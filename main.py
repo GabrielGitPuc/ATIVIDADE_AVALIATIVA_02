@@ -1,5 +1,8 @@
 import funcoes
 opcao = 0
+
+pedidos = {}
+entregador = {}
 while opcao == 0:
     print("="*30)
     print("FluxoNorte")
@@ -16,15 +19,20 @@ while opcao == 0:
     opc = int(input(":"))
     match opc:
         case 1:
-            print(funcoes.ID_pedido())
-            nome = input("Digite o nome do Cliente: ")
-            Endereco = input("Digite o Endereço: ")
-            Prioridade = input("Digite a Prioridade: ")
-            Desc_Pedido = input("Digite a descrição do pedido: ")
-            Status = input("Digite o Status:  ")
-            Id_Entregador = input("Digite o id do entregador: ")
+            id_pedidos = funcoes.ID_pedido()
+            print(id_pedidos)
+
+            pedidos[id_pedidos]{
+            'nome': input("Digite o nome do Cliente: "),
+            'endereco':  input("Digite o Endereço: "),
+            'prioridade':  input("Digite a Prioridade (Alta/Normal): "),
+            'desc_Pedido':  input("Digite a descrição do pedido: "),
+            'status':  input("Digite o Status:  "),
+            'id_Entregador':  input("Digite o id do entregador: ")
+            }
 
         case 2:
+            id_
             print(funcoes.ID_entregador())
             nome_entregador = input("Digite o nome do Entregador: ")
             veiculo = input("Digite o tipo de veiculo: ")
