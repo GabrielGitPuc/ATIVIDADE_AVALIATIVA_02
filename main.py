@@ -90,7 +90,7 @@ while opcao == 0:
         case 4:
             funcoes.limpar_menu()
             info = 1
-            while info == 1
+            while info == 1:
                 print('''      
 [1] Pedidos Pendentes 
 [2] Pedidos Entregues 
@@ -99,39 +99,55 @@ while opcao == 0:
 [5] Todas as Entregas realizadas por um entregador
 [6] Voltar
 ''')        
-            informações = input("Digite uma opção: ")
-            match informações:
-                case 1:
-                    funcoes.limpar_menu()
-                    print("Pedidos Pendentes:")
-                    print("="*30)
-                    for id_p, dados in pedidos.items():
-                        if dados['status'].lower() == 'pendente':
-                            print(f"ID: {id_p}")
-                            print(f"  Cliente:    {dados['nome']}")
-                            print(f"  Status:     {dados['status']}")
-                            print(f"  Prioridade: {dados['prioridade']})")
-                            print(f"  Descrição:  {dados['desc_pedido]}")
-                            print(f"  Status:     {dados['pendente']})")
-                            print("-"*30)
+                informações = input("Digite uma opção: ")
+                match informações:
+                    case 1:
+                        funcoes.limpar_menu()
+                        print("="*30)
+                        print("Pedidos Pendentes")
+                        print("="*30)
+                        for id_p, dados in pedidos.items():
+                            if dados['status'].lower() == 'pendente':
+                                print(f"ID: {id_p}")
+                                print(f"  Cliente:    {dados['nome']}")
+                                print(f"  Status:     {dados['status']}")
+                                print(f"  Prioridade: {dados['prioridade']})")
+                                print(f"  Descrição:  {dados['desc_pedido']}")
+                                print(f"  Status:     {dados['pendente']})")
+                                print("-"*30)
 
-                case 2:
-                    funcoes.limpar_menu()
-                case 3:
-                    funcoes.limpar_menu()
-                case 4:
-                    funcoes.limpar_menu()
-                case 5:
-                    funcoes.limpar_menu()
-                case 6:
-                    funcoes.limpar_menu()
-            
-            
-    
+                    case 2:
+                        funcoes.limpar_menu()
+                        print("="*30)
+                        print('Pedidos Entregues')
+                        print("="*30)
+                        for id_e, dados in id_pedidos.items():
+                            if dados['status'].lower() == 'Entregue':
+                                print(f'ID: {id_e}')
+                                print(f"  Cliente:    {dados['nome']}")
+                                print(f"  Status:     {dados['status']}")
+                                print(f"  Prioridade: {dados['prioridade']}")
+                                print(f"  Descrição:  {dados['desc_pedido']}")
+                                print(f"  Status:     {dados['pendente']})")
+                                print("-"*30)
+
+                    case 3:
+                        funcoes.limpar_menu()
+                        print("="*30)
+                        ('Buscar pedido por ID ')
+                    case 4:
+                        funcoes.limpar_menu()
+                    case 5:
+                        funcoes.limpar_menu()
+                    case 6:
+                        funcoes.limpar_menu()
+                
+                
+        
 
         case 6:
             opcao = 1
             opc = 0
 
-        
-print(pedidos)
+            
+    print(pedidos)
