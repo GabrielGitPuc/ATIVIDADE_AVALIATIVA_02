@@ -20,14 +20,4 @@ def ID_entregador():
 
 
 def limpar_menu():
-<<<<<<< Updated upstream
     os.system('cls' if os.name == 'nt' else 'clear')
-
-
-
-
-
-WOW
-=======
-    os.system('cls' if os.name == 'nt' else 'clear')
->>>>>>> Stashed changes

@@ -1,4 +1,5 @@
 import funcoes
+import os
 opcao = 0
 
 pedidos = {}
