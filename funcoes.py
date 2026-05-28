@@ -13,13 +13,14 @@ def ID_pedido():
 
 def ID_entregador():
     numeros_aleatorios = ''.join(map(str, random.sample(range(1, 9), k=4)))
-    return f'{numeros_aleatorios}'
+    return f'ID:{numeros_aleatorios}'
 
 
 
 
 
 def limpar_menu():
+<<<<<<< Updated upstream
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
@@ -27,3 +28,6 @@ def limpar_menu():
 
 
 WOW
+=======
+    os.system('cls' if os.name == 'nt' else 'clear')
+>>>>>>> Stashed changes

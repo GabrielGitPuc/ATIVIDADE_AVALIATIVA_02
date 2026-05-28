@@ -26,9 +26,9 @@ while opcao == 0:
             'nome_entregador': input("Digite o nome do Entregador: "),
             'veiculo': input("Digite o tipo de veiculo: "),
             'id_pedidos': input("Digite o id do pedido: "),
-            'disponibilidade': input("Digite a disponibilidade do entregador: ")
+            'disponibilidade': input("Digite a disponibilidade do entregador (sim/nao): ")
             }
-            print(f"✅ Entregador ID:{id_entregador} cadastrado com sucesso!")
+            print(f"✅ Entregador{id_entregador} cadastrado com sucesso!")
             
         case 2:
             funcoes.limpar_menu()
@@ -162,6 +162,22 @@ while opcao == 0:
                         
                     case 4:
                         funcoes.limpar_menu()
+                        print("="*30)
+                        print("Entregadores Disponiveis:")
+                        print("="*30)
+                        disponiveis = 0
+                        for id_e, dados in entregador.items():
+                            if dados['disponibilidade'].lower() == 'sim':
+                                disponiveis += 1
+                                print(f"ID: {id_e}")
+                                print(f" Nome: {dados['nome_entregador']}")
+                                print(f" Veiculo: {dados['veiculo']}")
+                                print("="*30)
+
+                        if disponiveis == 0:
+                            print("nenhum entregador disponivel")
+
+
                     case 5:
                         funcoes.limpar_menu()
                     case 6:
