@@ -8,8 +8,8 @@ while opcao == 0:
     print("FluxoNorte")
     print("="*30)
     print('''           
-[1] Cadastro pedido
-[2] Cadastro entregador
+[1] Cadastro entregador
+[2] Cadastro pedido
 [3] Atualizar Pedidos 
 [4] Informações 
 [5] Relatórios
@@ -74,17 +74,31 @@ while opcao == 0:
                           print("Pedido não Encontrado") 
                     case 3:
                         funcoes.limpar_menu()
-                        id_pedidos = input("Digite o ID do entregador que deseja desassociar do pedido: ")
+                        id_pedidos = input("Digite o ID do entregador que deseja associar do pedido: ")
                         if id_pedidos in pedidos:
                             id_entregador = input("Digite o ID do entregador: ")
                             if id_entregador in entregador:
-                                pedidos [id_pedidos] ['id_entregador'] = id_Entregador
-                                print(f'Entregador {id_entregador} associado ao pedido {id_pedido}')
+                                pedidos [id_pedidos] ['id_entregador'] = id_entregador
+                                print(f'Entregador {id_entregador} associado ao pedido {id_pedidos}')
                             else:
                                 print('Entregador não entregador')
                         else: 
                             print('Pedido não encontrado')
-                        
+                    case 4:
+                        funcoes.limpar_menu()
+                        id_pedidos = input("Digite o ID do entregador que deseja desassociar do pedido: ")
+                        if id_pedidos in pedidos:
+                            id_entregador = input("Digite o ID do entregador: ")
+                            if id_entregador in entregador:
+                                pedidos [id_pedidos] ['id_entregador'] = None
+                                print(f'Entregador {id_entregador} desassociado ao pedido {id_pedidos}')
+                            else:
+                                print('Entregador não entregador')
+                        else: 
+                            print('Pedido não encontrado')
+
+
+
                     case 5:
                         att = 0
         case 4:
@@ -99,7 +113,8 @@ while opcao == 0:
 [5] Todas as Entregas realizadas por um entregador
 [6] Voltar
 ''')        
-                informações = input("Digite uma opção: ")
+                informações = int(input("Digite uma opção: "))
+
                 match informações:
                     case 1:
                         funcoes.limpar_menu()
@@ -134,7 +149,17 @@ while opcao == 0:
                     case 3:
                         funcoes.limpar_menu()
                         print("="*30)
-                        ('Buscar pedido por ID ')
+                        id_pedidos = input("Digite o ID do pedido que deseja busca")
+                        for id_e, dados in id_pedidos.items():
+                            if dados['status'].lower() == 'Entregue':
+                                print(f'ID: {id_e}')
+                                print(f"  Cliente:    {dados['nome']}")
+                                print(f"  Status:     {dados['status']}")
+                                print(f"  Prioridade: {dados['prioridade']}")
+                                print(f"  Descrição:  {dados['desc_pedido']}")
+                                print(f"  Status:     {dados['pendente']})")
+                                print("-"*30)
+                        
                     case 4:
                         funcoes.limpar_menu()
                     case 5:
