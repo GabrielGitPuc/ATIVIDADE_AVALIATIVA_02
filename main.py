@@ -39,7 +39,7 @@ while opcao == 0:
             'nome': input("Digite o nome do Cliente: "),
             'endereco':  input("Digite o Endereço: "),
             'prioridade':  input("Digite a Prioridade (Alta/Normal): "),
-            'desc_Pedido':  input("Digite a descrição do pedido: "),
+            'desc_pedido':  input("Digite a descrição do pedido: "),
             'status':  input("Digite o Status:  "),
             'id_Entregador':  input("Digite o id do entregador: ")
             }
@@ -66,20 +66,65 @@ while opcao == 0:
                           print("Pedido não Encontrado") 
                     
                     case 2:
-                        id_pedidos = input("Digite o id do pedido que deseja alterar: ")
+                        funcoes.limpar_menu()
+                        id_pedidos = input("Digite o id do pedido que deseja cancelar: ")
                         if id_pedidos in pedidos:
-                            pedidos [id_pedidos] ['status'] 
+                            pedidos [id_pedidos] ['status'] = 'Cancelado' 
                         else: 
                           print("Pedido não Encontrado") 
                     case 3:
-                        pass
-
-                    case 4:
-                        pass
-
+                        funcoes.limpar_menu()
+                        id_pedidos = input("Digite o ID do entregador que deseja desassociar do pedido: ")
+                        if id_pedidos in pedidos:
+                            id_entregador = input("Digite o ID do entregador: ")
+                            if id_entregador in entregador:
+                                pedidos [id_pedidos] ['id_entregador'] = id_Entregador
+                                print(f'Entregador {id_entregador} associado ao pedido {id_pedido}')
+                            else:
+                                print('Entregador não entregador')
+                        else: 
+                            print('Pedido não encontrado')
+                        
                     case 5:
                         att = 0
-                
+        case 4:
+            funcoes.limpar_menu()
+            info = 1
+            while info == 1
+                print('''      
+[1] Pedidos Pendentes 
+[2] Pedidos Entregues 
+[3] Buscar Pedido por ID
+[4] Entregador Disponível
+[5] Todas as Entregas realizadas por um entregador
+[6] Voltar
+''')        
+            informações = input("Digite uma opção: ")
+            match informações:
+                case 1:
+                    funcoes.limpar_menu()
+                    print("Pedidos Pendentes:")
+                    print("="*30)
+                    for id_p, dados in pedidos.items():
+                        if dados['status'].lower() == 'pendente':
+                            print(f"ID: {id_p}")
+                            print(f"  Cliente:    {dados['nome']}")
+                            print(f"  Status:     {dados['status']}")
+                            print(f"  Prioridade: {dados['prioridade']})")
+                            print(f"  Descrição:  {dados['desc_pedido]}")
+                            print(f"  Status:     {dados['pendente']})")
+                            print("-"*30)
+
+                case 2:
+                    funcoes.limpar_menu()
+                case 3:
+                    funcoes.limpar_menu()
+                case 4:
+                    funcoes.limpar_menu()
+                case 5:
+                    funcoes.limpar_menu()
+                case 6:
+                    funcoes.limpar_menu()
             
             
     
