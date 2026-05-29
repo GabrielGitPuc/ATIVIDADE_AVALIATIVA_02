@@ -286,6 +286,16 @@ while opcao == 0:
                     case 5:
                         rel_op = 0
 
+        case 6:
+            funcoes.limpar_menu()
+            fechamento = input("Deseja encerrar o sistema? (sim/não):  ")
+            fechamento.lower()
+            if fechamento == 'sim':
+                print('Sistema finalizado!')
+            else:
+                print('Sua tentativa falhou, tente novamente')
+                continue
+            continue
+
+
 print(pedidos)
-
-
