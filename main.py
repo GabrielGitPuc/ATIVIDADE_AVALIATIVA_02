@@ -135,7 +135,7 @@ while opcao == 0:
                         print("="*30)
                         print('Pedidos Entregues')
                         print("="*30)
-                        for id_e, dados in id_pedidos.items():
+                        for id_e, dados in pedidos.items():
                             if dados['status'].lower() == 'Entregue':
                                 print(f'ID: {id_e}')
                                 print(f"  Cliente:    {dados['nome']}")
@@ -156,7 +156,6 @@ while opcao == 0:
                                 print(f"  Status:     {dados['status']}")
                                 print(f"  Prioridade: {dados['prioridade']}")
                                 print(f"  Descrição:  {dados['desc_pedido']}")
-                                print(f"  Status:     {dados['pendente']})")
                                 print("-"*30)
                         
                     case 4:
@@ -214,6 +213,7 @@ while opcao == 0:
                         if total == 0:
                             print("Nenhum pedido cadastrado ainda.")
                         print("="*30)
+
                     case 2:
                         funcoes.limpar_menu()
                         print("="*30)
@@ -235,5 +235,57 @@ while opcao == 0:
                                 print(f"{status}: {quantidade} pedido(s)")
                         
                         print("="*30)
+                    
+                    case 3:
+                        print('='*30)
+                        print('PRIORIDADE - ALTA')
+                        print('='*30)
+                        priori_alta = 0
+                        for pedi_al in pedidos:
+                            if id_pedidos['prioridade'] == 'Alta':
+                                priori_alta +=1
+                                print(f"Número de pedidos com prioridade alta: {priori_alta}")
+                        print('='*30)
+                        for id_pedidos, dados in pedidos.items():
+                            if id_pedidos['prioridade'] == 'Alta':
+                                print(f"  Cliente:    {dados['nome']}\n")
+                                print(f"  Prioridade: {dados['prioridade']}\n")
+                                print(f"  Descrição:  {dados['desc_pedido']}\n")
+                                print(f"  Status:     {dados['status']}\n")
+                    
+                    case 4:
+                        print('='*30)
+                        print('Entregador com mais pedidos')
+                        print('='*30)
+                        
+                        
+                        contagem = {}
+                        
+                        for id_p, dados in pedidos.items():
+                            
+                            if dados.get('status', '').lower() == 'entregue' and dados.get('id_entregador'):
+                                id_ent = dados['id_entregador']
+                                if id_ent in contagem:
+                                    contagem[id_ent] += 1
+                                else:
+                                    contagem[id_ent] = 1
+                        
+                        if contagem:
+                            id_maior = max(contagem, key=contagem.get)
+                            nome = entregador[id_maior]['nome_entregador']
+                            total = contagem[id_maior]
+                            
+                            print(f"ID:     {id_maior}")
+                            print(f"Nome:   {nome}")
+                            print(f"Total de entregas: {total}")
+                        else:
+                            print("Nenhuma entrega concluída ainda.")
+                        
+                        print('='*30)
+                    
+                    case 5:
+                        rel_op = 0
 
 print(pedidos)
+
+
