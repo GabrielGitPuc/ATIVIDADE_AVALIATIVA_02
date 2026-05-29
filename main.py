@@ -31,6 +31,7 @@ while opcao == 0:
             'nome_entregador': input("Digite o nome do Entregador: "),
             'veiculo': veiculo,
             'limite': funcoes.limite_veiculo(veiculo),
+            'pedidos_atuais': 0,
             'disponibilidade': input("Digite a disponibilidade do entregador (Disponivel/indisponivel): ")
             }
             
@@ -81,8 +82,12 @@ while opcao == 0:
                         if id_pedidos in pedidos:
                             id_entregador = input("Digite o ID do entregador: ")
                             if id_entregador in entregador:
-                                pedidos [id_pedidos] ['id_entregador'] = id_entregador
-                                print(f'Entregador {id_entregador} associado ao pedido {id_pedidos}')
+                                if funcoes.verificar_limite(id_entregador, entregador):
+                                    pedidos[id_pedidos]['id_entregador'] = id_entregador
+                                    entregador[id_entregador]['pedidos_atuais'] += 1 
+                                    print(f'Entregador {id_entregador} associado ao pedido {id_pedidos}')
+                                else:
+                                    print(f'Entregador {id_entregador} já atingiu o limite!')
                             else:
                                 print('Entregador não entregador')
                         else: 
