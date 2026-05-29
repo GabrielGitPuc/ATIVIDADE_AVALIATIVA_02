@@ -16,7 +16,7 @@ while opcao == 0:
 [5] Relatórios
 [6] Finalizar Sistema ''')
     
-    opc = int(input(":"))
+    opc = funcoes.ler_opcao([1,2,3,4,5,6])
     match opc:
         case 1:
             funcoes.limpar_menu()
@@ -26,7 +26,6 @@ while opcao == 0:
             entregador[id_entregador] = {
             'nome_entregador': input("Digite o nome do Entregador: "),
             'veiculo': input("Digite o tipo de veiculo: "),
-            'id_pedidos': input("Digite o id do pedido: "),
             'disponibilidade': input("Digite a disponibilidade do entregador (sim/nao): ")
             }
             print(f"✅ Entregador{id_entregador} cadastrado com sucesso!")
@@ -42,7 +41,6 @@ while opcao == 0:
             'prioridade':  input("Digite a Prioridade (Alta/Normal): "),
             'desc_pedido':  input("Digite a descrição do pedido: "),
             'status':  input("Digite o Status:  "),
-            'id_Entregador':  input("Digite o id do entregador: ")
             }
             print(f"✅ Pedido ID:{id_pedidos} cadastrado com sucesso!")
 
@@ -56,7 +54,7 @@ while opcao == 0:
 [3] Associar Entregadores a Pedidos
 [4] Remover associação de Entregador 
 [5] Voltar ''')
-                atualizar = int(input(": "))
+                atualizar = funcoes.ler_opcao([1,2,3,4,5])
                 match atualizar:
                     case 1:
                         funcoes.limpar_menu()
@@ -98,8 +96,6 @@ while opcao == 0:
                         else: 
                             print('Pedido não encontrado')
 
-
-
                     case 5:
                         att = 0
         case 4:
@@ -114,7 +110,7 @@ while opcao == 0:
 [5] Todas as Entregas realizadas por um entregador
 [6] Voltar
 ''')        
-                informações = int(input("Digite uma opção: "))
+                informações = funcoes.ler_opcao([1,2,3,4,5,6])
 
                 match informações:
                     case 1:
@@ -178,18 +174,22 @@ while opcao == 0:
                         if disponiveis == 0:
                             print("nenhum entregador disponivel")
 
-
                     case 5:
                         funcoes.limpar_menu()
+                        print("="*30)
+                        print("Entregas por entregador")
+                        print("="*30)
+                        pedidos_totalentregador = 0
+                        id_entregador = int(input("Digite o ID do entregador que deseja consultar: "))
+                        for id_e, dados in entregador.items():
+                            if id_pedidos['status'] == 'Entregue':
+                                pedidos_totalentregador +=1
+                                print(f'ID: {id_e}')
+                                print(f" Nome: {dados['nome_entregador']}")
+                                print(f'Total de entregas: {pedidos_totalentregador}')
+                            else:
+                                (f'O entregador não há entregas concluídas')
+
                     case 6:
-                        funcoes.limpar_menu()
-                
-                
-        
-
-        case 6:
-            opcao = 1
-            opc = 0
-
-            
+                        info = 0
     print(pedidos)
