@@ -99,6 +99,7 @@ while opcao == 0:
                             id_entregador = input("Digite o ID do entregador: ")
                             if id_entregador in entregador:
                                 pedidos [id_pedidos] ['id_entregador'] = None
+                                entregador[id_entregador]['pedidos_atuais'] -= 1
                                 print(f'Entregador {id_entregador} desassociado ao pedido {id_pedidos}')
                             else:
                                 print('Entregador não entregador')
