@@ -25,12 +25,14 @@ while opcao == 0:
             id_entregador = funcoes.ID_entregador()
             print(id_entregador)
 
+            veiculo = input("Digite o tipo de veiculo(Caminhão/van): ")
+
             entregador[id_entregador] = {
             'nome_entregador': input("Digite o nome do Entregador: "),
-            'veiculo': input("Digite o tipo de veiculo: "),
-            'disponibilidade': input("Digite a disponibilidade do entregador (sim/nao): ")
+            'veiculo': veiculo,
+            'limite': funcoes.limite_veiculo(veiculo),
+            'disponibilidade': input("Digite a disponibilidade do entregador (Disponivel/indisponivel): ")
             }
-            print(f"✅ Entregador{id_entregador} cadastrado com sucesso!")
             
         case 2:
             funcoes.limpar_menu()
