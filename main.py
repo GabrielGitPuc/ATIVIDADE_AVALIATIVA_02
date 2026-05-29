@@ -4,6 +4,8 @@ opcao = 0
 
 pedidos = {}
 entregador = {}
+funcoes.limpar_menu()
+
 while opcao == 0:
     print("="*30)
     print("FluxoNorte")
@@ -203,15 +205,35 @@ while opcao == 0:
 [4] Entregador com o maior número de entrega
 [5] Voltar
 ''')   
-            relatorios = int(input("Escolha uma opção: "))
-            match relatorios:
-                case 1:
-                    print("="*30)    
-                    total = len(pedidos)
-                    print(f"Total de pedidos cadastrados: {total}")
-                    if total == 0:
-                        print("Nenhum pedido cadastrado ainda.")
-                    print("="*30)
-                case 2:
-                    
-    print(pedidos)
+                relatorios = int(input("Escolha uma opção: "))
+                match relatorios:
+                    case 1:
+                        print("="*30)    
+                        total = len(pedidos)
+                        print(f"Total de pedidos cadastrados: {total}")
+                        if total == 0:
+                            print("Nenhum pedido cadastrado ainda.")
+                        print("="*30)
+                    case 2:
+                        funcoes.limpar_menu()
+                        print("="*30)
+                        print("Pedidos por Status")
+                        
+                        contagem = {}
+                        
+                        for id_p, dados in pedidos.items():
+                            status = dados['status'].lower()
+                            if status in contagem:
+                                contagem[status] += 1
+                            else:
+                                contagem[status] = 1
+                        
+                        if len(contagem) == 0:
+                            print("Nenhum pedido cadastrado.")
+                        else:
+                            for status, quantidade in contagem.items():
+                                print(f"{status}: {quantidade} pedido(s)")
+                        
+                        print("="*30)
+
+print(pedidos)
