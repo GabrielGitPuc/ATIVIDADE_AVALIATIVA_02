@@ -29,6 +29,9 @@ def limite_veiculo(veiculo):
     else:  # Van
         return 3
 
+def verificar_limite(id_entregador, entregador):
+    return entregador[id_entregador]['pedidos_atuais'] < entregador[id_entregador]['limite']
+
 def limpar_menu():
     os.system('cls' if os.name == 'nt' else 'clear')
 
