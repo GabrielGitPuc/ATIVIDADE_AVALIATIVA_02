@@ -13,7 +13,7 @@ while opcao == 0:
 [2] Cadastro pedido
 [3] Atualizar Pedidos 
 [4] Informações 
-[5] Relatórios
+[5] Relatórios Operacionais
 [6] Finalizar Sistema ''')
     
     opc = funcoes.ler_opcao([1,2,3,4,5,6])
@@ -192,4 +192,26 @@ while opcao == 0:
 
                     case 6:
                         info = 0
+        case 5:
+            funcoes.limpar_menu()
+            rel_op = 1
+            while rel_op == 1:
+                print('''      
+[1] Total de pedidos 
+[2] Quantidade de pedidos por status 
+[3] Pedidos com Alta Prioridade
+[4] Entregador com o maior número de entrega
+[5] Voltar
+''')   
+            relatorios = int(input("Escolha uma opção: "))
+            match relatorios:
+                case 1:
+                    print("="*30)    
+                    total = len(pedidos)
+                    print(f"Total de pedidos cadastrados: {total}")
+                    if total == 0:
+                        print("Nenhum pedido cadastrado ainda.")
+                    print("="*30)
+                case 2:
+                    
     print(pedidos)
