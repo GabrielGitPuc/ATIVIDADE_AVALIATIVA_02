@@ -24,7 +24,7 @@ while inicio == 0:
             Nome = input("Digite seu nome: ")
             Registro = input("Digite seu número de registro: ")
            
-            if Registro in operador and operador[Registro]['nome'] == Nome:
+            if Registro in operador and operador[Registro]['nome'].lower == Nome.lower:
                 print("Login realizado com sucesso")
                 inicio = 1
                 while inicio == 1:
@@ -51,7 +51,7 @@ while inicio == 0:
                                 'limite': funcoes.limite_veiculo(veiculo),
                                 'disponibilidade' : input("Digite se está disponível(sim/nao): ")
                                 }
-                                print(f"✅ Pedido ID:{id_entregador} cadastrado com sucesso!")
+                                print(f"✅ Entregador ID:{id_entregador} cadastrado com sucesso!")
                                 
                             case 2:
                                 funcoes.limpar_menu()
@@ -103,21 +103,21 @@ while inicio == 0:
                                                     pedidos [id_pedidos] ['id_entregador'] = id_entregador
                                                     print(f'Entregador {id_entregador} associado ao pedido {id_pedidos}')
                                                 else:
-                                                    print('Entregador não entregador')
+                                                    print('Entregador não encontrado')
                                             else: 
                                                 print('Pedido não encontrado')
                                         case 4:
                                             funcoes.limpar_menu()
-                                            id_pedidos = input("Digite o ID do entregador que deseja desassociar do pedido: ")
+                                            id_pedidos = input("Digite o ID do pedido que deseja remover a associação: ")
                                             if id_pedidos in pedidos:
-                                                id_entregador = input("Digite o ID do entregador: ")
-                                                if id_entregador in entregador:
-                                                    pedidos [id_pedidos] ['id_entregador'] = None
-                                                    print(f'Entregador {id_entregador} desassociado ao pedido {id_pedidos}')
+                                                associado = pedidos[id_pedidos].get('id_entregador')
+                                                if associado:                                # ← verifica se há entregador associado
+                                                    pedidos[id_pedidos]['id_entregador'] = None
+                                                    print(f'Entregador {associado} desassociado do pedido {id_pedidos}.')
                                                 else:
-                                                    print('Entregador não entregador')
-                                            else: 
-                                                print('Pedido não encontrado')
+                                                    print('Este pedido não possui entregador associado.')
+                                            else:
+                                                print('Pedido não encontrado.')
 
                                         case 5:
                                             att = 0
@@ -145,9 +145,9 @@ while inicio == 0:
                                                 if dados['status'].lower() == 'pendente':
                                                     print(f"ID: {id_p}")
                                                     print(f"  Cliente:    {dados['nome']}")
-                                                    print(f"  Prioridade: {dados['prioridade']})")
+                                                    print(f"  Prioridade: {dados['prioridade']}")
                                                     print(f"  Descrição:  {dados['desc_pedido']}")
-                                                    print(f"  Status:     {dados['status']})")
+                                                    print(f"  Status:     {dados['status']}")
                                                     print("-"*30)
 
                                         case 2:
@@ -167,16 +167,17 @@ while inicio == 0:
                                         case 3:
                                             funcoes.limpar_menu()
                                             print("="*30)
-                                            id_pedidos = input("Digite o ID do pedido que deseja busca")
+                                            id_pedidos = input("Digite o ID do pedido que deseja buscar: ")
                                             if id_pedidos in pedidos:
                                                 dados = pedidos[id_pedidos]
-                                                if dados['status'].lower() == 'entregue':
-                                                    print(f'ID: {id_e}')
-                                                    print(f"  Cliente:    {dados['nome']}")
-                                                    print(f"  Status:     {dados['status']}")
-                                                    print(f"  Prioridade: {dados['prioridade']}")
-                                                    print(f"  Descrição:  {dados['desc_pedido']}")
-                                                    print("-"*30)
+                                                print(f"  ID:           {id_pedidos}")  
+                                                print(f"  Cliente:    {dados['nome']}")
+                                                print(f"  Status:     {dados['status']}")
+                                                print(f"  Prioridade: {dados['prioridade']}")
+                                                print(f"  Descrição:  {dados['desc_pedido']}")
+                                                print("-"*30)
+                                            else:
+                                                print("Pedido não encontrado.")
                                             
                                         case 4:
                                             funcoes.limpar_menu()
@@ -200,16 +201,25 @@ while inicio == 0:
                                             print("="*30)
                                             print("Entregas por entregador")
                                             print("="*30)
-                                            pedidos_totalentregador = 0
-                                            id_entregador = int(input("Digite o ID do entregador que deseja consultar: "))
-                                            for id_e, dados in entregador.items():
-                                                if id_pedidos['status'] == 'entregue':
-                                                    pedidos_totalentregador +=1
-                                                    print(f'ID: {id_e}')
-                                                    print(f" Nome: {dados['nome_entregador']}")
-                                                    print(f'Total de entregas: {pedidos_totalentregador}')
+                                            id_entregador = input("Digite o ID do entregador que deseja consultar: ")
+                                            if id_entregador in entregador:                 # ← valida se entregador existe
+                                                pedidos_totalentregador = 0
+                                                for id_p, dados_p in pedidos.items():       # ← itera sobre pedidos
+                                                    if (dados_p.get('id_entregador') == id_entregador
+                                                            and dados_p['status'].lower() == 'entregue'):
+                                                        pedidos_totalentregador += 1
+                                                        print(f'  Pedido ID: {id_p}')
+                                                        print(f"  Cliente:   {dados_p['nome']}")
+                                                        print("-"*30)
+                                                nome = entregador[id_entregador]['nome_entregador']
+                                                print(f"Entregador: {nome}")
+                                                print(f"Total de entregas concluídas: {pedidos_totalentregador}")
+                                                if pedidos_totalentregador == 0:
+                                                    print("Nenhuma entrega concluída ainda.")
                                                 else:
-                                                    (f'O entregador não há entregas concluídas')
+                                                    print(f"Total de entregas concluídas: {pedidos_totalentregador}")
+                                            else:
+                                                print("Entregador não encontrado.")
 
                                         case 6:
                                             info = 0
@@ -224,7 +234,7 @@ while inicio == 0:
                     [4] Entregador com o maior número de entrega
                     [5] Voltar
                     ''')   
-                                    relatorios = int(input("Escolha uma opção: "))
+                                    relatorios = funcoes.ler_opcao([1, 2, 3, 4, 5])
                                     match relatorios:
                                         case 1:
                                             print("="*30)    
@@ -257,21 +267,25 @@ while inicio == 0:
                                             print("="*30)
                                         
                                         case 3:
+                                            funcoes.limpar_menu()
                                             print('='*30)
                                             print('PRIORIDADE - ALTA')
                                             print('='*30)
                                             priori_alta = 0
-                                            for pedi_al in pedidos:
-                                                if id_pedidos['prioridade'] == 'Alta':
-                                                    priori_alta +=1
-                                                    print(f"Número de pedidos com prioridade alta: {priori_alta}")
+                                            for id_p, dados in pedidos.items():              # ← itera corretamente
+                                                if dados['prioridade'].lower() == 'alta':    # ← acessa via dados
+                                                    priori_alta += 1
+                                                    print(f'  Pedido ID:  {id_p}')
+                                                    print(f"  Cliente:    {dados['nome']}")
+                                                    print(f"  Prioridade: {dados['prioridade']}")
+                                                    print(f"  Descrição:  {dados['desc_pedido']}")
+                                                    print(f"  Status:     {dados['status']}")
+                                                    print("-"*30)
+                                            if priori_alta == 0:
+                                                print("Nenhum pedido com prioridade alta.")
+                                            else:
+                                                print(f"Total com prioridade alta: {priori_alta}")
                                             print('='*30)
-                                            for id_pedidos, dados in pedidos.items():
-                                                if id_pedidos['prioridade'] == 'Alta':
-                                                    print(f"  Cliente:    {dados['nome']}\n")
-                                                    print(f"  Prioridade: {dados['prioridade']}\n")
-                                                    print(f"  Descrição:  {dados['desc_pedido']}\n")
-                                                    print(f"  Status:     {dados['status']}\n")
                                         
                                         case 4:
                                             print('='*30)
@@ -309,7 +323,7 @@ while inicio == 0:
                             case 6:
                                 funcoes.limpar_menu()
                                 fechamento = input("Deseja encerrar o sistema? (sim/não):  ")
-                                fechamento.lower()
+                                fechamento = fechamento.lower()
                                 if fechamento == 'sim':
                                     print('Sistema finalizado!')
                                 else:
@@ -323,20 +337,14 @@ while inicio == 0:
 
         case 2:
             funcoes.limpar_menu()
-            ('='*30)
-            ('Cadastro - OPERADOR')
-            ('='*30)
+            print('='*30)
+            print('Cadastro - OPERADOR')
+            print('='*30)
             Registro_Operador = funcoes.RO()
             operador[Registro_Operador] = {
-            'nome': input("Digite se nome: ")
+            'nome': input("Digite seu nome: ").lower
             }
             print('Obrigado! Agora segue seu Registro de Operador, faça o login utilzando nome e registro.')
             print(f'Registro de Operador: {Registro_Operador}')
 
             inicio = 0
-
-
-
-    
-
-print(pedidos)
