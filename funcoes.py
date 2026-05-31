@@ -4,7 +4,7 @@ import os
 
 
 def RO():
-    numeros_aleatorios = ''.join(random(map(str, random.sample(1,9), k=4)))
+    numeros_aleatorios = ''.join(map(str, random.sample(range(1,9), k=4)))
     return f'{numeros_aleatorios}'
 
 
@@ -16,7 +16,7 @@ def ID_pedido():
 
 def ID_entregador():
     numeros_aleatorios = ''.join(map(str, random.sample(range(1, 9), k=4)))
-    return f'ID:{numeros_aleatorios}'
+    return f'{numeros_aleatorios}'
 
 def limite_veiculo(veiculo):
     if veiculo.lower() == 'caminhão':
