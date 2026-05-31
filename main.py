@@ -24,7 +24,7 @@ while inicio == 0:
             Nome = input("Digite seu nome: ")
             Registro = input("Digite seu número de registro: ")
            
-            if Registro in operador and operador[Registro]['nome'].lower == Nome.lower:
+            if Registro in operador and operador[Registro]['nome'].lower() == Nome.lower():
                 print("Login realizado com sucesso")
                 inicio = 1
                 while inicio == 1:
@@ -120,6 +120,7 @@ while inicio == 0:
                                                 print('Pedido não encontrado.')
 
                                         case 5:
+                                            funcoes.limpar_menu()
                                             att = 0
                             case 4:
                                 funcoes.limpar_menu()
@@ -222,6 +223,7 @@ while inicio == 0:
                                                 print("Entregador não encontrado.")
 
                                         case 6:
+                                            funcoes.limpar_menu()
                                             info = 0
                             case 5:
                                 funcoes.limpar_menu()
@@ -318,6 +320,7 @@ while inicio == 0:
                                             print('='*30)
                                         
                                         case 5:
+                                            funcoes.limpar_menu()
                                             rel_op = 0
 
                             case 6:
@@ -342,7 +345,7 @@ while inicio == 0:
             print('='*30)
             Registro_Operador = funcoes.RO()
             operador[Registro_Operador] = {
-            'nome': input("Digite seu nome: ").lower
+            'nome': input("Digite seu nome: ").lower()
             }
             print('Obrigado! Agora segue seu Registro de Operador, faça o login utilzando nome e registro.')
             print(f'Registro de Operador: {Registro_Operador}')
