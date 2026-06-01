@@ -100,14 +100,19 @@ while inicio == 0:
                                             if id_pedidos in pedidos:
                                                 id_entregador = input("Digite o ID do entregador: ")
                                                 if id_entregador in entregador:
-                                                    pedidos [id_pedidos] ['id_entregador'] = id_entregador
-                                                    print(f'Entregador {id_entregador} associado ao pedido {id_pedidos}')
-                                                    if id_pedidos in entregador[id_entregador] > funcoes.limite_veiculo:
-                                                        print("Limite de pedidos excedido!") 
+                                                    pedidos_do_entregador = sum(
+                                                        1 for p in pedidos.values()
+                                                        if p.get('id_entregador') == id_entregador
+                                                    )
+                                                    if pedidos_do_entregador >= entregador[id_entregador]['limite']:
+                                                        print("Limite de pedidos excedido!")
+                                                    else:
+                                                        pedidos[id_pedidos]['id_entregador'] = id_entregador
+                                                        print(f'Entregador {id_entregador} associado ao pedido {id_pedidos}')
                                                 else:
-                                                    print('Entregador não encontrado')
+                                                    print('Entregador não encontrado.')
                                             else: 
-                                                print('Pedido não encontrado')
+                                                print('Pedido não encontrado.')
                                         case 4:
                                             funcoes.limpar_menu()
                                             id_pedidos = input("Digite o ID do pedido que deseja remover a associação: ")
