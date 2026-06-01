@@ -43,7 +43,7 @@ while inicio == 0:
                                 id_entregador = funcoes.ID_entregador()
                                 print(id_entregador)
 
-                                veiculo = input("Digite o tipo de veiculo(Caminhão/van): ")
+                                veiculo = input("Digite o tipo de veiculo(Van/Carro/Moto): ")
 
                                 entregador[id_entregador] = {
                                 'nome_entregador': input("Digite o nome do Entregador: "),
@@ -52,6 +52,7 @@ while inicio == 0:
                                 'disponibilidade' : input("Digite se está disponível(sim/nao): ")
                                 }
                                 print(f"✅ Entregador ID:{id_entregador} cadastrado com sucesso!")
+                                print(f'O limite do seu veículo é {}')
                                 
                             case 2:
                                 funcoes.limpar_menu()
@@ -63,7 +64,7 @@ while inicio == 0:
                                 'endereco':  input("Digite o Endereço: "),
                                 'prioridade':  input("Digite a Prioridade (Alta/Normal): "),
                                 'desc_pedido':  input("Digite a descrição do pedido: "),
-                                'status':  input("Digite o Status:  "),
+                                'status':  funcoes.selecionar_status()
                                 }
                                 print(f"✅ Pedido ID:{id_pedidos} cadastrado com sucesso!")
 
@@ -337,10 +338,13 @@ while inicio == 0:
                                 fechamento = fechamento.lower()
                                 if operario in operador and fechamento == 'sim':
                                     print('Sistema finalizado!')
+                                    comeco = 0
+                                    inicio = 1
                                 else:
                                     print('Sua tentativa falhou, tente novamente')
                                     continue
                                 continue
+                                
 
             else:
                 print('Usuário não cadastrado. Tente novamente com as credenciais corretas.')
