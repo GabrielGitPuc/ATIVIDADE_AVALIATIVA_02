@@ -21,13 +21,13 @@ def ID_entregador():
 def limite_veiculo(veiculo):
     if veiculo.lower() == 'caminhão':
         tamanho = input("Digite o tamanho do caminhão (2 Eixos/3 Eixos/Cavalo Trucado/BiTrem): ").lower()
-        if tamanho == '2 Eixos':
+        if tamanho == '2 eixos':
             return 5
-        elif tamanho == '3 Eixos':
+        elif tamanho == '3 eixos':
             return 10
-        elif tamanho == 'Cavalo Trucado':
+        elif tamanho == 'cavalo trucado':
             return 20
-        elif tamanho == 'BiTrem':
+        elif tamanho == 'biTrem':
             return 35
     else:  # Van
         return 3

@@ -29,12 +29,12 @@ while inicio == 0:
                 inicio = 1
                 while inicio == 1:
                         print('''           
-                    [1] Cadastro entregador
-                    [2] Cadastro pedido
-                    [3] Atualizar Pedidos 
-                    [4] Informações 
-                    [5] Relatórios Operacionais
-                    [6] Finalizar Sistema ''')
+[1] Cadastro entregador
+[2] Cadastro pedido
+[3] Atualizar Pedidos 
+[4] Informações 
+[5] Relatórios Operacionais
+[6] Finalizar Sistema ''')
                         
                         opc = funcoes.ler_opcao([1,2,3,4,5,6])
                         match opc:
@@ -72,11 +72,11 @@ while inicio == 0:
                                 att = 1
                                 while att == 1:
                                     print('''      
-                    [1] Alterar o status do pedido
-                    [2] Cancelar Pedido 
-                    [3] Associar Entregadores a Pedidos
-                    [4] Remover associação de Entregador 
-                    [5] Voltar ''')
+[1] Alterar o status do pedido
+[2] Cancelar Pedido 
+[3] Associar Entregadores a Pedidos
+[4] Remover associação de Entregador 
+[5] Voltar ''')
                                     atualizar = funcoes.ler_opcao([1,2,3,4,5])
                                     match atualizar:
                                         case 1:
@@ -102,6 +102,8 @@ while inicio == 0:
                                                 if id_entregador in entregador:
                                                     pedidos [id_pedidos] ['id_entregador'] = id_entregador
                                                     print(f'Entregador {id_entregador} associado ao pedido {id_pedidos}')
+                                                    if id_pedidos in entregador[id_entregador] > funcoes.limite_veiculo:
+                                                        print("Limite de pedidos excedido!") 
                                                 else:
                                                     print('Entregador não encontrado')
                                             else: 
@@ -127,12 +129,12 @@ while inicio == 0:
                                 info = 1
                                 while info == 1:
                                     print('''      
-                    [1] Pedidos Pendentes 
-                    [2] Pedidos Entregues 
-                    [3] Buscar Pedido por ID
-                    [4] Entregador Disponível
-                    [5] Todas as Entregas realizadas por um entregador
-                    [6] Voltar
+[1] Pedidos Pendentes 
+[2] Pedidos Entregues 
+[3] Buscar Pedido por ID
+[4] Entregador Disponível
+[5] Todas as Entregas realizadas por um entregador
+[6] Voltar
                     ''')        
                                     informações = funcoes.ler_opcao([1,2,3,4,5,6])
 
@@ -230,11 +232,11 @@ while inicio == 0:
                                 rel_op = 1
                                 while rel_op == 1:
                                     print('''      
-                    [1] Total de pedidos 
-                    [2] Quantidade de pedidos por status 
-                    [3] Pedidos com Alta Prioridade
-                    [4] Entregador com o maior número de entrega
-                    [5] Voltar
+[1] Total de pedidos 
+[2] Quantidade de pedidos por status 
+[3] Pedidos com Alta Prioridade
+[4] Entregador com o maior número de entrega
+[5] Voltar
                     ''')   
                                     relatorios = funcoes.ler_opcao([1, 2, 3, 4, 5])
                                     match relatorios:
@@ -325,9 +327,10 @@ while inicio == 0:
 
                             case 6:
                                 funcoes.limpar_menu()
+                                operario = input("Digite seu código de operário: ")
                                 fechamento = input("Deseja encerrar o sistema? (sim/não):  ")
                                 fechamento = fechamento.lower()
-                                if fechamento == 'sim':
+                                if operario in operador and fechamento == 'sim':
                                     print('Sistema finalizado!')
                                 else:
                                     print('Sua tentativa falhou, tente novamente')
